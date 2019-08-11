@@ -1,9 +1,9 @@
 <template>
   <div id="app">
     <TodoHeader></ToDoHeader>
-    <TodoInput></TodoInput>
-    <TodoList></TodoList>
-    <TodoFooter></TodoFooter>
+    <TodoInput v-on:addTodo="addTodo"></TodoInput>
+    <TodoList v-bind:propsdata="todoItems" @removeTodo="removeTodo"></TodoList>
+    <TodoFooter v-on:removeAll="clearAll"></TodoFooter>
   </div>
 </template>
 
@@ -15,6 +15,35 @@
   import TodoFooter from "./components/TodoFooter.vue"
 
 export default {
+  data(){
+    return {
+      todoItems : []
+    }
+  },
+
+  created(){
+      if(localStorage.length > 0){
+          for(var i=0; i<localStorage.length; i++){
+              this.todoItems.push(localStorage.key(i));
+          }
+      }
+  },
+
+  methods : {
+    addTodo(todoItem){
+      // localStorage에 추가
+      localStorage.setItem(todoItem, todoItem);
+      this.todoItems.push(todoItem);
+    },
+    clearAll(){
+      localStorage.clear();
+      this.todoItems = [];
+    },
+    removeTodo(todoItem, index) {
+        localStorage.removeItem(todoItem);
+        this.todoItems.splice(index, 1);
+    }
+  },
   /* 컴포넌트 등록  */
   components : {
     "TodoHeader" : TodoHeader,
