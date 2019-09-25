@@ -1,6 +1,10 @@
 <template>
     <header>
         <h1>ToDo it</h1>
+        <ul>
+            <li>1</li>
+            <li>2</li>
+        </ul>
     </header>
 </template>
 <script>
@@ -9,7 +13,7 @@ export default {
 }
 </script>
 
-<style scoped>
+<style src="../assets/css/example.css" scoped>
     h1 {
         color : #2F3B52;
         font-weight: 900;
