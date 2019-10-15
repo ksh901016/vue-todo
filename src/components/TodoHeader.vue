@@ -1,10 +1,6 @@
 <template>
     <header>
         <h1>ToDo it</h1>
-        <ul>
-            <li>1</li>
-            <li>2</li>
-        </ul>
     </header>
 </template>
 <script>

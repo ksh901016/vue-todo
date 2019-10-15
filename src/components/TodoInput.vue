@@ -28,9 +28,8 @@ export default {
     methods : {
         addTodo(){
             if(this.newTodoItem !== ""){
-                var value = this.newTodoItem && this.newTodoItem.trim();
-                this.$emit("addTodo", value);
-                //localStorage.setItem(this.newTodoItem, this.newTodoItem);
+                let text = this.newTodoItem && this.newTodoItem.trim();
+                this.$store.commit("addTodo", text);
                 this.clearInput();
             }else{
                 this.showModal = !this.showModal; // 텍스트 미 입력시 모달 동작
