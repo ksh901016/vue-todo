@@ -29,7 +29,8 @@ export default {
         addTodo(){
             if(this.newTodoItem !== ""){
                 let text = this.newTodoItem && this.newTodoItem.trim();
-                this.$store.commit("addTodo", text);
+                let obj = {completed : false, item : text};
+                this.$store.commit("addTodo", obj);
                 this.clearInput();
             }else{
                 this.showModal = !this.showModal; // 텍스트 미 입력시 모달 동작

@@ -3,7 +3,7 @@
     <TodoHeader></ToDoHeader>
     <TodoInput></TodoInput>
     <TodoList></TodoList>
-    <TodoFooter v-on:removeAll="clearAll"></TodoFooter>
+    <TodoFooter></TodoFooter>
   </div>
 </template>
 
@@ -21,12 +21,6 @@ export default {
     }
   },
 
-  methods : {
-    clearAll(){
-      localStorage.clear();
-      this.todoItems = [];
-    }
-  },
   /* 컴포넌트 등록  */
   components : {
     "TodoHeader" : TodoHeader,

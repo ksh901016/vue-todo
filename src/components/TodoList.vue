@@ -1,9 +1,10 @@
 <template>
     <section>
         <transition-group name="list" tag="ul">
-            <li :key=todoItem v-for="(todoItem, index) in this.$store.state.todoItems" class="shadow">
-                <i class="checkBtn fas fa-check" aria-hidden="true"></i>
-                {{todoItem}}
+            <li :key="todoItem.item" v-for="(todoItem, index) in this.$store.state.todoItems" class="shadow">
+                <i class="checkBtn fas fa-check" v-bind:class="{checkBtnCompleted : todoItem.completed}" aria-hidden="true"
+                    v-on:click="toggleComplete(todoItem, index)"></i>
+                <span v-bind:class="{textCompleted : todoItem.completed}">{{todoItem.item}}</span>
                 <span class="removeBtn" type="button" @click="removeTodo(todoItem, index)">
                     <i class="far fa-trash-alt" aria-hidden="true"></i>
                 </span>
@@ -16,7 +17,10 @@ export default {
     methods : {
         removeTodo(todoItem, index){
             this.$store.commit("removeTodo", {todoItem, index});
-        }
+        },
+        toggleComplete(todoItem, index){
+            this.$store.commit("toggleOneItem", {todoItem, index});
+        },
     }
 }
 </script>
@@ -38,11 +42,19 @@ export default {
         background: white;
         border-radius: 5px;
     }
-     .checkBtn {
+    .checkBtn {
         line-height: 45px;
         color: #62acde;
         margin-right: 5px;
     }
+    .checkBtnCompleted{
+       color : #b3adad;
+    }
+
+    .textCompleted{
+      color : #b3adad;
+    }
+
     .removeBtn {
         margin-left: auto;
         color: #de4343;
